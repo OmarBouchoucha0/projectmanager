@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Figtree, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/shared/app-sidebar"
+// import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+// import { AppSidebar } from "@/components/shared/app-sidebar"
 
 const robotoSlabHeading = Roboto_Slab({ subsets: ['latin'], variable: '--font-heading' });
 
@@ -36,13 +36,16 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
 
-        <SidebarProvider>
-          <AppSidebar />
-          <main>
-            <SidebarTrigger />
-            {children}
-          </main>
-        </SidebarProvider>
+        {/* <SidebarProvider> */}
+        {/*   <AppSidebar /> */}
+        {/*   <main> */}
+        {/*     <SidebarTrigger /> */}
+        {/*     {children} */}
+        {/*   </main> */}
+        {/* </SidebarProvider> */}
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   );

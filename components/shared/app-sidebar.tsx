@@ -20,7 +20,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-import { Plus, ChevronDown, Ellipsis } from "lucide-react"
+import { Plus, ChevronDown, Ellipsis, LogOut } from "lucide-react"
 
 export function AppSidebar() {
   return (
@@ -37,7 +37,14 @@ export function AppSidebar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
                 <DropdownMenuItem>
-                  <span>test</span>
+                  <span>Default Workspace</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <span>Personal Workspace</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="border-t border-border">
+                  <Plus />
+                  <span>Add Workspace</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -45,14 +52,6 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton type="button" className="justify-center py-0">
-              <Plus />
-              <span>Add Project</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
         <Collapsible defaultOpen className="group/collapsible">
           <SidebarGroup className="py-0">
             <SidebarGroupLabel asChild>
@@ -98,16 +97,25 @@ export function AppSidebar() {
                     </SidebarMenuItem>
                   ))}
                 </SidebarMenu>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton type="button" className="justify-center py-0">
+                      <Plus />
+                      <span>Add Project</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+
               </SidebarGroupContent>
             </CollapsibleContent>
           </SidebarGroup>
         </Collapsible>
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="border-border border-t">
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+              <DropdownMenuTrigger asChild className="py-5">
                 <SidebarMenuButton>
                   <Avatar>
                     <AvatarImage src="test" />
@@ -126,11 +134,13 @@ export function AppSidebar() {
                 <DropdownMenuItem>
                   <span>test</span>
                 </DropdownMenuItem>
+                <DropdownMenuItem className="border-t border-border">
+                  <LogOut />
+                  <span>logout</span>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-
           </SidebarMenuItem>
-
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
