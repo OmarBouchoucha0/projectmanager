@@ -10,6 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -27,6 +28,7 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader>
+        <SidebarTrigger className="group-data-[state=collapsed]:hidden" />
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
