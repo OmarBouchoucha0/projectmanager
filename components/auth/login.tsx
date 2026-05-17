@@ -9,13 +9,14 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button";
+import { FcGoogle } from "react-icons/fc"
 
-export default function Login() {
+export default function Login({ onSwitch }: { onSwitch: () => void }) {
   return (
-    <Card className="gap-8 pt-4 border-border pb-0 w-1/4 min-w-64">
+    <Card className="gap-8 pt-4 border-border border pb-0 w-1/4 min-w-64">
       <CardHeader >
-        <CardTitle>Login</CardTitle>
-        <CardDescription>Use Credentials to login</CardDescription>
+        <CardTitle className="text-xl">Login</CardTitle>
+        <CardDescription className="text-sm">Use Credentials to login</CardDescription>
       </CardHeader>
       <CardContent>
         <form>
@@ -42,8 +43,13 @@ export default function Login() {
           login
         </Button>
         <Button variant="outline" className="w-full">
+          <FcGoogle />
           login With Google
         </Button>
+        <p className="text-sm">
+          Does Not have an account?{" "}
+          <button onClick={onSwitch} className="underline">Sign up</button>
+        </p>
       </CardFooter>
     </Card>
   );
