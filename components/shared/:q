@@ -1,0 +1,12 @@
+import { NavBar } from "@/components/shared/app-navbar"
+
+export function PageHeader() {
+  return (
+    <header className="flex justify-between fixed top-0 right-0 z-50 ">
+      <div className="flex items-center">
+        Project Alpha
+      </div>
+      <NavBar />
+    </header>
+  )
+}

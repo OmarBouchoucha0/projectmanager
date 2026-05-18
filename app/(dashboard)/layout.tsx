@@ -1,6 +1,6 @@
-import { SidebarProvider } from "@/components/ui/sidebar"
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/shared/app-sidebar"
-import { HiddenTrigger } from "@/components/shared/app-sidebar-trigger"
+import { PageHeader } from "@/components/shared/page-header"
 
 
 
@@ -8,10 +8,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <SidebarProvider>
       <AppSidebar />
-      <HiddenTrigger />
-      <main>
+      <main className="w-full">
+        <PageHeader />
         {children}
       </main>
     </SidebarProvider>
+
   )
 }

@@ -1,0 +1,48 @@
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+import { Ellipsis, Share, Star } from "lucide-react"
+
+export function NavBar() {
+  return (
+    <NavigationMenu viewport={false}>
+      <NavigationMenuList>
+
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className="[&_svg:last-child]:hidden">
+            <Share />
+          </NavigationMenuTrigger>
+          <NavigationMenuContent className="w-full">
+            <NavigationMenuLink>private</NavigationMenuLink>
+            <NavigationMenuLink>public</NavigationMenuLink>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+
+
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className="[&_svg:last-child]:hidden">
+            <Star />
+          </NavigationMenuTrigger>
+        </NavigationMenuItem>
+
+
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className="[&_svg:last-child]:hidden">
+            <Ellipsis />
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuLink>Link</NavigationMenuLink>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+
+      </NavigationMenuList>
+    </NavigationMenu>
+  )
+}
