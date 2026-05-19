@@ -13,7 +13,8 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Separator } from "../ui/separator"
 
 import {
   DropdownMenu,
@@ -22,7 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-import { Plus, ChevronDown, Ellipsis, LogOut, Settings } from "lucide-react"
+import { Plus, ChevronDown, Ellipsis, LogOut, Settings, Star } from "lucide-react"
 
 export function AppSidebar() {
   return (
@@ -38,7 +39,7 @@ export function AppSidebar() {
           <SidebarMenuItem className="px-1">
             <DropdownMenu>
               <DropdownMenuTrigger asChild >
-                <SidebarMenuButton >
+                <SidebarMenuButton className="mt-1" >
                   Default Workspace
                   <Ellipsis className="ml-auto" />
                 </SidebarMenuButton>
@@ -50,7 +51,8 @@ export function AppSidebar() {
                 <DropdownMenuItem className="cursor-pointer">
                   <span>Personal Workspace</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="border-t border-border cursor-pointer">
+                <Separator className="my-1" />
+                <DropdownMenuItem className="cursor-pointer">
                   <Plus />
                   <span>Add Workspace</span>
                 </DropdownMenuItem>
@@ -66,8 +68,8 @@ export function AppSidebar() {
                 <ChevronDown className="ml-auto transition-transform group-data-[state=closed]/collapsible:rotate-90 opacity-0 group-hover/collapsible:opacity-100" />
               </CollapsibleTrigger>
             </SidebarGroupLabel>
+            <SidebarGroupContent />
             <CollapsibleContent>
-              <SidebarGroupContent />
             </CollapsibleContent>
           </SidebarGroup>
         </Collapsible>
@@ -96,9 +98,12 @@ export function AppSidebar() {
               <SidebarGroupContent>
                 <SidebarMenu className="pl-1 border-l border-border ml-4 pr-8">
                   {["Project Alpha", "Project Beta", "Project Gamma", "Project Delta"].map((project) => (
-                    <SidebarMenuItem key={project}>
-                      <SidebarMenuButton type="button">
-                        <span>{project}</span>
+                    <SidebarMenuItem key={project} >
+                      <SidebarMenuButton type="button" className="group/button">
+                        <div className="w-full items-center flex justify-between ">
+                          <span>{project}</span>
+                          <Star className="opacity-0 transition-opacity group-hover/button:opacity-100" />
+                        </div>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   ))}
@@ -118,14 +123,14 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="border-border border-t px-1">
+      <Separator />
+      <SidebarFooter className=" px-1">
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild className="py-6 px-1">
                 <SidebarMenuButton>
                   <Avatar>
-                    <AvatarImage src="test" />
                     <AvatarFallback>
                       JD
                     </AvatarFallback>
@@ -142,7 +147,8 @@ export function AppSidebar() {
                   <Settings />
                   <span>settings</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="border-t border-border cursor-pointer">
+                <Separator className="my-1" />
+                <DropdownMenuItem className="cursor-pointer">
                   <LogOut />
                   <span>logout</span>
                 </DropdownMenuItem>
