@@ -1,49 +1,48 @@
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
+
 import { Ellipsis, Share, Star } from "lucide-react"
 
 export function NavBar() {
   const navItems = [
     {
-      icon: <Share className="h-5 w-5" />,
+      icon: <Share />,
       content: (
-        <NavigationMenuContent className="left-auto right-0">
-          <NavigationMenuLink>private</NavigationMenuLink>
-          <NavigationMenuLink>public</NavigationMenuLink>
-        </NavigationMenuContent>
+        <MenubarContent align="end">
+          <MenubarItem>private</MenubarItem>
+          <MenubarItem>public</MenubarItem>
+        </MenubarContent>
       ),
     },
     {
-      icon: <Star className="h-5 w-5" />,
+      icon: <Star />,
       content: null,
     },
     {
-      icon: <Ellipsis className="h-5 w-5" />,
+      icon: <Ellipsis />,
       content: (
-        <NavigationMenuContent className="left-auto right-0">
-          <NavigationMenuLink>Link</NavigationMenuLink>
-        </NavigationMenuContent>
+        <MenubarContent align="end">
+          <MenubarItem >Link</MenubarItem>
+        </MenubarContent>
       ),
     },
   ]
+
   return (
-    < NavigationMenu viewport={false} className="pr-1" >
-      <NavigationMenuList>
-        {navItems.map((item, index) => (
-          <NavigationMenuItem key={index}>
-            <NavigationMenuTrigger className="[&_svg:last-child]:hidden h-8 w-8 p-0">
-              {item.icon}
-            </NavigationMenuTrigger>
-            {item.content}
-          </NavigationMenuItem>
-        ))}
-      </NavigationMenuList>
-    </NavigationMenu >
+    <Menubar className="pr-2 border-none">
+      {navItems.map((item, index) => (
+        <MenubarMenu key={index}>
+          <MenubarTrigger className="h-9 w-9 items-center flex justify-center">
+            {item.icon}
+          </MenubarTrigger>
+          {item.content}
+        </MenubarMenu>
+      ))}
+    </Menubar>
   )
 }
