@@ -12,14 +12,14 @@ import { Button } from "@/components/ui/button";
 
 export default function Signup({ onSwitch }: { onSwitch: () => void }) {
   return (
-    <Card className="gap-8 pt-4 border-border border pb-0 w-1/4 min-w-64">
+    <Card className="gap-8 pt-4 border-border border pb-0  min-w-84">
       <CardHeader >
         <CardTitle className="text-xl">Signup</CardTitle>
         <CardDescription className="text-sm">Create New Account</CardDescription>
       </CardHeader>
       <CardContent>
         <form>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <div className="grid gap-0">
               <Label htmlFor="fname">First Name</Label>
               <Input
@@ -57,7 +57,7 @@ export default function Signup({ onSwitch }: { onSwitch: () => void }) {
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex-col gap-2 border-border border-t bg-muted pb-8">
+      <CardFooter className="flex-col gap-2 border-border border-t bg-muted pb-6">
         <Button type="submit" className="w-full">
           Signup
         </Button>
