@@ -13,14 +13,16 @@ export default function Page() {
 
   const [message, setMessage] = useState("");
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   const testBackend = async () => {
-    const response = await fetch("http://localhost:5000/api/test");
+    const response = await fetch(`${API_URL}/api/test`);
     const data = await response.text();
     setMessage(data);
   };
 
   const testUser = async () => {
-    const response = await fetch("http://localhost:5000/api/create-user");
+    const response = await fetch(`${API_URL}/api/create-user`);
     const data = await response.text();
     setMessage(data);
   };
