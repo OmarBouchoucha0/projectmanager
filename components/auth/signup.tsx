@@ -11,8 +11,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Signup({ onSwitch }: { onSwitch: () => void }) {
+  const router = useRouter()
   const [firstname, setFname] = useState("");
   const [lastname, setLname] = useState("");
   const [email, setEmail] = useState("");
@@ -44,11 +46,12 @@ export default function Signup({ onSwitch }: { onSwitch: () => void }) {
       );
 
       const message = await response.text();
+      console.log(message);
       if (!response.ok) {
         setError(message || "Failed to create user");
+      } else {
+        router.push("/");
       }
-
-      console.log(message);
 
     } catch (error) {
       setError(error instanceof Error ? error.message : "Something went wrong");

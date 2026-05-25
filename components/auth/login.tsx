@@ -12,8 +12,10 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc"
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login({ onSwitch }: { onSwitch: () => void }) {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -41,14 +43,18 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
       );
 
 
-      const data = await response.json();
 
+      const data = await response.json();
       if (!response.ok) {
         setError(data?.message || "Request failed");
         return;
       }
 
-      console.log("exists:", data.exists);
+      if (data.exists) {
+        console.log("exists:", data.exists);
+        router.push("/");
+        return;
+      }
 
     } catch (error) {
       setError(error instanceof Error ? error.message : "Something went wrong");
