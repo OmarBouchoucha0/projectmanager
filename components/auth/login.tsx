@@ -54,6 +54,8 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
         console.log("exists:", data.exists);
         router.push("/");
         return;
+      } else {
+        setError(data?.message || "email or password mismatch");
       }
 
     } catch (error) {
@@ -96,7 +98,7 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
           </div>
         </CardContent>
         <CardFooter className="flex-col gap-2 border-border border-t bg-muted pb-5 mt-6">
-          {error && <p className="text-sm text-red-500">{error}</p>}
+          {error && <p className="text-bold text-red-500">{error}</p>}
           <Button type="submit" disabled={loading} className="w-full">
             {loading ? "Login in up..." : "Login"}
           </Button>
