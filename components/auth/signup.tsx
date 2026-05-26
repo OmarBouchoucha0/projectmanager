@@ -45,14 +45,24 @@ export default function Signup({ onSwitch }: { onSwitch: () => void }) {
         }
       );
 
-      const message = await response.text();
-      console.log(message);
-      if (!response.ok) {
-        setError(message || "Failed to create user");
-      } else {
+      console.log("response:", response);
+      const status = response.status;
+      if (status == 200) {
+        const user = await response.json();
+        localStorage.setItem("user_profile", JSON.stringify(user));
         router.push("/");
+        return;
       }
-
+      if (status == 409) {
+        setError("Email already in use");
+        setLoading(false)
+        return;
+      }
+      if (status == 500) {
+        setError("Server Error pls try again!");
+        setLoading(false)
+        return;
+      }
     } catch (error) {
       setError(error instanceof Error ? error.message : "Something went wrong");
       console.error(error);
@@ -60,14 +70,12 @@ export default function Signup({ onSwitch }: { onSwitch: () => void }) {
       setLoading(false)
     }
   }
-
   return (
     <Card className="gap-8 pt-4 border-border border pb-0  min-w-84">
       <CardHeader >
         <CardTitle className="text-xl">Signup</CardTitle>
         <CardDescription className="text-sm">Create New Account</CardDescription>
       </CardHeader>
-
       <form onSubmit={handleSubmit}>
         <CardContent>
           <div className="flex flex-col gap-3">
@@ -81,7 +89,6 @@ export default function Signup({ onSwitch }: { onSwitch: () => void }) {
                 required
               />
             </div>
-
             <div className="grid gap-0">
               <Label htmlFor="lname">Last Name</Label>
               <Input
@@ -92,7 +99,6 @@ export default function Signup({ onSwitch }: { onSwitch: () => void }) {
                 required
               />
             </div>
-
             <div className="grid gap-0">
               <Label htmlFor="email">email</Label>
               <Input
@@ -103,7 +109,6 @@ export default function Signup({ onSwitch }: { onSwitch: () => void }) {
                 required
               />
             </div>
-
             <div className="grid gap-0">
               <Label htmlFor="password">password</Label>
               <Input id="password"
