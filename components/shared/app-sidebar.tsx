@@ -15,17 +15,36 @@ import {
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Separator } from "../ui/separator"
-
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
+import { useState } from "react"
 import { Plus, ChevronDown, Ellipsis, LogOut, Settings, Star } from "lucide-react"
 
 export function AppSidebar() {
+  interface UserProfile {
+    id: number;
+    firstname: string;
+    lastname: string;
+    email: string;
+  }
+  const defaultUser: UserProfile = {
+    id: 0,
+    firstname: "Guest",
+    lastname: "",
+    email: "",
+  };
+  const [user] = useState<UserProfile>(() => {
+    const stored = localStorage.getItem("user_profile");
+    return stored ? JSON.parse(stored) : defaultUser;
+  });
+
+  const getInitials = () => {
+    return `${user.firstname.charAt(0)}${user.lastname.charAt(0)}`.toUpperCase();
+  };
   return (
     <Sidebar>
       <SidebarHeader>
@@ -132,12 +151,12 @@ export function AppSidebar() {
                 <SidebarMenuButton>
                   <Avatar>
                     <AvatarFallback>
-                      JD
+                      {user ? getInitials() : "G"}
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col items-start text-left">
-                    <span className="text-sm font-medium">John Doe</span>
-                    <span className="text-xs text-muted-foreground">john@example.com</span>
+                    <span className="text-sm font-medium">{user ? `${user.firstname} ${user.lastname}` : "Guest User"}</span>
+                    <span className="text-xs text-muted-foreground">{user ? user.email : "Not signed in"}</span>
                   </div>
                   <Ellipsis className="ml-auto" />
                 </SidebarMenuButton>
