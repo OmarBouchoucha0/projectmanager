@@ -10,7 +10,7 @@ export function HiddenTrigger() {
   if (open) return null
 
   return (
-    <SidebarTrigger className="transition-opacity duration-300 ease-in-out cursor-e-resize" />
+    <SidebarTrigger className="transition-opacity duration-300 ease-in-out cursor-e-resize h-8 w-8" />
   )
 }
 

@@ -22,9 +22,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useState } from "react"
+import { useRouter } from "next/navigation";
 import { Plus, ChevronDown, Ellipsis, LogOut, Settings, Star } from "lucide-react"
 
 export function AppSidebar() {
+  const router = useRouter();
   interface UserProfile {
     id: number;
     firstname: string;
@@ -38,13 +40,17 @@ export function AppSidebar() {
     email: "",
   };
   const [user] = useState<UserProfile>(() => {
+    if (typeof window === "undefined") return defaultUser;
     const stored = localStorage.getItem("user_profile");
     return stored ? JSON.parse(stored) : defaultUser;
   });
-
   const getInitials = () => {
     return `${user.firstname.charAt(0)}${user.lastname.charAt(0)}`.toUpperCase();
   };
+  //TODO: this will have to clean up the localstore and cookies after i implement the JWT
+  const logout = () => {
+    router.push("/login");
+  }
   return (
     <Sidebar>
       <SidebarHeader>
@@ -167,7 +173,7 @@ export function AppSidebar() {
                   <span>settings</span>
                 </DropdownMenuItem>
                 <Separator className="my-1" />
-                <DropdownMenuItem className="cursor-pointer">
+                <DropdownMenuItem className="cursor-pointer" onClick={logout}>
                   <LogOut />
                   <span>logout</span>
                 </DropdownMenuItem>
@@ -176,6 +182,6 @@ export function AppSidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
-    </Sidebar>
+    </Sidebar >
   )
 }
