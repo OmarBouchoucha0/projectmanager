@@ -20,24 +20,23 @@ export default function Home() {
           <CreateTaskButton />
         </div>
       </div>
-
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Task</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Priority</TableHead>
-            <TableHead>Due Date</TableHead>
-            <TableHead>Description</TableHead>
+            <TableHead className="text-left"  >Task</TableHead>
+            <TableHead className="text-center">Status</TableHead>
+            <TableHead className="text-center">Priority</TableHead>
+            <TableHead className="text-center">Due Date</TableHead>
+            <TableHead className="text-right" >Description</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           <TableRow>
-            <TableCell>Task1</TableCell>
-            <TableCell>Not Started</TableCell>
-            <TableCell>High</TableCell>
-            <TableCell>21/05/2026</TableCell>
-            <TableCell>Stuff</TableCell>
+            <TableCell className="text-left"  >Task1</TableCell>
+            <TableCell className="text-center">Not Started</TableCell>
+            <TableCell className="text-center">High</TableCell>
+            <TableCell className="text-center">21/05/2026</TableCell>
+            <TableCell className="text-right" >Stuff</TableCell>
           </TableRow>
         </TableBody>
       </Table>
