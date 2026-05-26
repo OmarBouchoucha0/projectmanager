@@ -12,12 +12,7 @@ export function NavBar() {
   const navItems = [
     {
       icon: <Share />,
-      content: (
-        <MenubarContent align="end">
-          <MenubarItem>private</MenubarItem>
-          <MenubarItem>public</MenubarItem>
-        </MenubarContent>
-      ),
+      content: null,
     },
     {
       icon: <Star />,
@@ -27,7 +22,7 @@ export function NavBar() {
       icon: <Ellipsis />,
       content: (
         <MenubarContent align="end">
-          <MenubarItem >Link</MenubarItem>
+          <MenubarItem className="cursor-pointer">Link</MenubarItem>
         </MenubarContent>
       ),
     },
