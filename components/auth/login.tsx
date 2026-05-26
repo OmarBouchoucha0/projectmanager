@@ -20,8 +20,6 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
@@ -29,7 +27,7 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/user/exists`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/user/login`,
         {
           method: "POST",
           headers: {
@@ -41,23 +39,24 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
           }),
         }
       );
-
-
-
-      const data = await response.json();
-      if (!response.ok) {
-        setError(data?.message || "Request failed");
-        return;
-      }
-
-      if (data.exists) {
-        console.log("exists:", data.exists);
+      console.log("response:", response);
+      const status = response.status;
+      if (status == 200) {
+        const user = await response.json();
+        localStorage.setItem("user_profile", JSON.stringify(user));
         router.push("/");
         return;
-      } else {
-        setError(data?.message || "email or password mismatch");
       }
-
+      if (status == 401) {
+        setError("Wrong email or password");
+        setLoading(false)
+        return;
+      }
+      if (status == 500) {
+        setError("Server Error pls try again!");
+        setLoading(false)
+        return;
+      }
     } catch (error) {
       setError(error instanceof Error ? error.message : "Something went wrong");
       console.error(error);
@@ -65,8 +64,6 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
       setLoading(false)
     }
   }
-
-
   return (
     <Card className="gap-8 pt-4 border-border border pb-0 min-w-84">
       <CardHeader >
@@ -86,7 +83,6 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
                 required
               />
             </div>
-
             <div className="grid gap-0">
               <Label htmlFor="password-rtl">password</Label>
               <Input id="password-rtl"
