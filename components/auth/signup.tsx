@@ -30,7 +30,7 @@ export default function Signup({ onSwitch }: { onSwitch: () => void }) {
     setLoading(true);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/user/create`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/user/register`,
         {
           method: "POST",
           headers: {
@@ -44,10 +44,9 @@ export default function Signup({ onSwitch }: { onSwitch: () => void }) {
           }),
         }
       );
-
       console.log("response:", response);
       const status = response.status;
-      if (status == 200) {
+      if (status == 201) {
         const user = await response.json();
         localStorage.setItem("user_profile", JSON.stringify(user));
         router.push("/");
