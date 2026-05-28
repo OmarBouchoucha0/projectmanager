@@ -25,11 +25,13 @@ import { useState } from "react"
 import { useRouter } from "next/navigation";
 import { Plus, ChevronDown, Ellipsis, LogOut, Settings, Star } from "lucide-react"
 import { CreateWorkspace } from "../workspace/app-create-workspace"
+import { CreateProject } from "../project/app-create-project"
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
 
 export function AppSidebar() {
   const router = useRouter();
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [workspaceDialogOpen, setWorkspaceDialogOpen] = useState(false);
+  const [projectDialogOpen, setProjectDialogOpen] = useState(false);
   interface UserProfile {
     id: number;
     firstname: string;
@@ -82,7 +84,7 @@ export function AppSidebar() {
                 <Separator className="my-1" />
                 <DropdownMenuItem
                   onSelect={() => {
-                    setDialogOpen(true);
+                    setWorkspaceDialogOpen(true);
                   }}
                   className="cursor-pointer">
                   <div className="flex flex-row gap-2 items-center">
@@ -93,11 +95,11 @@ export function AppSidebar() {
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
-          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+          <Dialog open={workspaceDialogOpen} onOpenChange={setWorkspaceDialogOpen}>
             <DialogTrigger asChild>
             </DialogTrigger>
             <DialogContent>
-              <CreateWorkspace onClose={() => setDialogOpen(false)} />
+              <CreateWorkspace onClose={() => setWorkspaceDialogOpen(false)} />
             </DialogContent>
           </Dialog>
         </SidebarMenu>
@@ -155,12 +157,23 @@ export function AppSidebar() {
         </Collapsible>
         <SidebarGroup className="py-0">
           <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton type="button" className="justify-center py-0">
-                <Plus />
-                <span>Add Project</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            <div>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  type="button"
+                  onClick={() => setProjectDialogOpen(true)}
+                  className="justify-center gap-4"
+                >
+                  <Plus />
+                  <span>Add Project</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <Dialog open={projectDialogOpen} onOpenChange={setProjectDialogOpen}>
+                <DialogContent>
+                  <CreateProject onClose={() => setProjectDialogOpen(false)} />
+                </DialogContent>
+              </Dialog>
+            </div>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
