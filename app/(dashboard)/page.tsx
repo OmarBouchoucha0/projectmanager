@@ -23,20 +23,20 @@ export default function Home() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="text-left"  >Task</TableHead>
+            <TableHead className="text-center"  >Task</TableHead>
             <TableHead className="text-center">Status</TableHead>
             <TableHead className="text-center">Priority</TableHead>
             <TableHead className="text-center">Due Date</TableHead>
-            <TableHead className="text-right" >Description</TableHead>
+            <TableHead className="text-center" >Description</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           <TableRow>
-            <TableCell className="text-left"  >Task1</TableCell>
+            <TableCell className="text-center"  >Task1</TableCell>
             <TableCell className="text-center">Not Started</TableCell>
             <TableCell className="text-center">High</TableCell>
             <TableCell className="text-center">21/05/2026</TableCell>
-            <TableCell className="text-right" >Stuff</TableCell>
+            <TableCell className="text-center" >Stuff</TableCell>
           </TableRow>
         </TableBody>
       </Table>
