@@ -21,15 +21,7 @@ import { DatePicker } from "@/components/task/app-create-task-calander"
 import { Textarea } from "@/components/ui/textarea"
 import {
   Field,
-  FieldContent,
-  FieldDescription,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-  FieldLegend,
-  FieldSeparator,
   FieldSet,
-  FieldTitle,
 } from "@/components/ui/field"
 
 export function CreateTask({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) {
@@ -88,7 +80,7 @@ export function CreateTask({ open, onOpenChange }: { open: boolean, onOpenChange
           </FieldSet>
         </form>
         <SheetFooter>
-          <Button type="submit">Save changes</Button>
+          <Button type="submit">Save</Button>
           <SheetClose asChild>
             <Button variant="outline">Close</Button>
           </SheetClose>

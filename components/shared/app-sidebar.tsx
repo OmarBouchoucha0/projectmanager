@@ -24,9 +24,12 @@ import {
 import { useState } from "react"
 import { useRouter } from "next/navigation";
 import { Plus, ChevronDown, Ellipsis, LogOut, Settings, Star } from "lucide-react"
+import { CreateWorkspace } from "../workspace/app-create-workspace"
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
 
 export function AppSidebar() {
   const router = useRouter();
+  const [dialogOpen, setDialogOpen] = useState(false);
   interface UserProfile {
     id: number;
     firstname: string;
@@ -77,13 +80,26 @@ export function AppSidebar() {
                   <span>Personal Workspace</span>
                 </DropdownMenuItem>
                 <Separator className="my-1" />
-                <DropdownMenuItem className="cursor-pointer">
-                  <Plus />
-                  <span>Add Workspace</span>
+                <DropdownMenuItem
+                  onSelect={() => {
+                    setDialogOpen(true);
+                  }}
+                  className="cursor-pointer">
+                  <div className="flex flex-row gap-2 items-center">
+                    <Plus />
+                    <span className="cursor-pointer">Add Workspace</span>
+                  </div>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+            </DialogTrigger>
+            <DialogContent>
+              <CreateWorkspace onClose={() => setDialogOpen(false)} />
+            </DialogContent>
+          </Dialog>
         </SidebarMenu>
         <Collapsible defaultOpen className="group/collapsible">
           <SidebarGroup className="py-0">
