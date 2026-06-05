@@ -33,17 +33,20 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: 'include',
           body: JSON.stringify({
             email,
             password,
           }),
         }
       );
+
       console.log("response:", response);
       const status = response.status;
       if (status == 200) {
-        const user = await response.json();
-        localStorage.setItem("user_profile", JSON.stringify(user));
+        const user_data = await response.json();
+        console.log(user_data);
+        localStorage.setItem("user_profile", JSON.stringify(user_data));
         router.push("/");
         return;
       }
@@ -51,14 +54,12 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
         setError("Wrong email or password");
         setLoading(false)
         return;
-      }
-      if (status == 500) {
+      } else {
         setError("Server Error pls try again!");
         setLoading(false)
         return;
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : "Something went wrong");
       console.error(error);
     } finally {
       setLoading(false)
@@ -71,6 +72,7 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
         <CardDescription className="text-sm">Use Credentials to login</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
+
         <CardContent>
           <div className="flex flex-col gap-3">
             <div className="grid gap-0">
@@ -80,6 +82,7 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
                 type="email"
                 value={email} onChange={(e) => setEmail(e.target.value)}
                 className="py-0"
+                autoComplete="off"
                 required
               />
             </div>
@@ -89,7 +92,9 @@ export default function Login({ onSwitch }: { onSwitch: () => void }) {
                 type="password"
                 value={password} onChange={(e) => setPassword(e.target.value)}
                 className="py-0"
-                required />
+                autoComplete="new-password"
+                required
+              />
             </div>
           </div>
         </CardContent>

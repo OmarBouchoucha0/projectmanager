@@ -36,6 +36,7 @@ export default function Signup({ onSwitch }: { onSwitch: () => void }) {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: 'include',
           body: JSON.stringify({
             firstname,
             lastname,
@@ -47,8 +48,6 @@ export default function Signup({ onSwitch }: { onSwitch: () => void }) {
       console.log("response:", response);
       const status = response.status;
       if (status == 201) {
-        const user = await response.json();
-        localStorage.setItem("user_profile", JSON.stringify(user));
         router.push("/");
         return;
       }
